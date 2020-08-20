@@ -3,7 +3,7 @@ import {Paper,Typography} from '@material-ui/core'
 
 const VideoDetail=({selectedVideo})=>{
   if (!selectedVideo) return <div>Loading...</div>
-  console.log(selectedVideo.id)
+  console.log(selectedVideo.id.videoId)
   const videoSrc=`https://www.youtube.com/embed/${selectedVideo.id.videoId}`
 
   return(

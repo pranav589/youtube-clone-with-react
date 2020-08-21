@@ -7,6 +7,7 @@ import VideoList from './components/VideoList'
 
 import VideoDetail from './components/VideoDetail'
 
+
  function App() {
    const [videos,setVideos]=useState('')
 
@@ -36,7 +37,7 @@ import VideoDetail from './components/VideoDetail'
             <VideoDetail selectedVideo={selectedVideo}/>
            </Grid>
            <Grid item xs={4}>
-            {/*list */}
+            <VideoList videos={videos}/>
            </Grid>
         </Grid>
       </Grid>

@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {Grid} from '@material-ui/core'
 import "./style.css";
 import youtube from './api/youtube'
@@ -9,9 +9,13 @@ import VideoDetail from './components/VideoDetail'
 
 
  function App() {
-   const [videos,setVideos]=useState('')
+   const [videos,setVideos]=useState([])
 
    const [selectedVideo,setSelectedVideo]=useState(null)
+   
+   useEffect(()=>{
+      handleSubmit('React tutorial')
+   },[])
 
    const handleSubmit=async(search)=>{
      const res=await youtube.get('search',{
@@ -26,6 +30,10 @@ import VideoDetail from './components/VideoDetail'
      setVideos(res.data.items)
      setSelectedVideo(res.data.items[0])
    }
+   const onVideoSelect=(video)=>{
+     setSelectedVideo(video)
+   }
+
   return (
     <Grid justify="center" container spacing={10}>
       <Grid item xs={12}>
@@ -37,7 +45,7 @@ import VideoDetail from './components/VideoDetail'
             <VideoDetail selectedVideo={selectedVideo}/>
            </Grid>
            <Grid item xs={4}>
-            <VideoList videos={videos}/>
+            <VideoList videos={videos} onVideoSelect={onVideoSelect}/>
            </Grid>
         </Grid>
       </Grid>
